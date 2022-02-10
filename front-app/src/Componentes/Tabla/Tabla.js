@@ -19,7 +19,7 @@ export default class Tabla extends Component {
         this.setState({ detalles: !this.state.detalles, detalleinfo: info })
         console.log('Vista Detalles');
     }
-    HndlAgregar = (ev, newProds) => {
+    HndlAgregar = (newProds) => {
         this.setState({ newRows: newProds });
     }
     HndlMostrarInsertar = (e) => {

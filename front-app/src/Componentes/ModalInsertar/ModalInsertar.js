@@ -13,18 +13,14 @@ export class ModalInsertar extends Component {
     }
 
     HndlChange = (e) => {
-        this.setState({
-            sku: e.target.name == "sku" && e.target.val,
-            name: e.target.name == "name" && e.target.val,
-            quantity: e.target.name == "quantity" && e.target.val,
-            price: e.target.name == "price" && e.target.val
-        })
-        console.log(([this.state.sku, this.state.name, this.state.quantity, this.state.price]))
+
+        const { name, value } = e.target
+        this.setState({ [name]: value })
     }
 
     render() {
         return (
-            <div className="modal " id="myModalInsertar" onClick={console.log(this.props.cerrar)}>
+            <div className="modal " id="myModalInsertar" >
                 <div className="modal-dialog">
                     <div className="modal-content">
 
@@ -63,7 +59,7 @@ export class ModalInsertar extends Component {
 
                         <div className="modal-footer">
                             <button className="btn btn-danger" onClick={this.props.cerrar}>Cancelar</button>
-                            <button className="btn btn-success" onClick={(e) => { this.props.agregar(e, this.state.info) }}>Agregar</button>
+                            <button className="btn btn-success" onClick={(e) => { this.props.agregar([this.state.sku, this.state.name, this.state.quantity, this.state.price]) }}>Agregar</button>
                         </div>
 
                     </div>
