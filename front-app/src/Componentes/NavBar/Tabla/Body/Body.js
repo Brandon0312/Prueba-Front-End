@@ -7,7 +7,8 @@ class Body extends React.Component {
         super(props)
 
         this.state = {
-            items: []
+            items: [],
+            fetching: true
         }
     }
 
@@ -18,10 +19,17 @@ class Body extends React.Component {
             }
         }).then(res => res.json())
             .catch(error => console.error('Error:', error))
-            .then(response => console.log('Success:', response));
+            .then(response => {
+                console.log('Success:', response)
+                this.setState({ items: response.orders, fetching: false })
+            });
     }
 
     render() {
+
+        if (this.state.fetching) {
+            return <h2>Cargando...</h2>
+        }
         return <Tabla />
     }
 }
