@@ -1,6 +1,6 @@
 import react from 'react';
 
-export default function Tabla() {
+export default function Tabla(props) {
     return (
         <>
             <div className="row center">
@@ -23,15 +23,18 @@ export default function Tabla() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>john@example.com</td>
-                            <td>john@example.com</td>
-                        </tr>
-
+                        {props.orders.map((order, index) => {
+                            return (
+                                <tr key={order.id}>
+                                    <td>{order.items[0].sku}</td>
+                                    <td>{order.name}</td>
+                                    <td>{order.items[0].fulfillment.quantity}</td>
+                                    <td>{order.items[0].price}</td>
+                                </tr>
+                            )
+                        })
+                        }
                     </tbody>
-
                 </table>
             </div>
         </>

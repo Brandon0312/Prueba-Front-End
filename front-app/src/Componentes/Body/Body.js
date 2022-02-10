@@ -1,5 +1,6 @@
 import React from "react";
-import Tabla from "../Tabla";
+import Tabla from "../Tabla/Tabla";
+
 
 class Body extends React.Component {
 
@@ -30,7 +31,11 @@ class Body extends React.Component {
         if (this.state.fetching) {
             return <h2>Cargando...</h2>
         }
-        return <Tabla />
+        return (
+            <>
+                <Tabla orders={this.state.items} />
+            </>)
+
     }
 }
 
