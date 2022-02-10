@@ -1,6 +1,7 @@
 import react, { Component } from 'react';
 import Detalles from '../Detalles/Detalles';
 import Modal from '../Modal/Modal';
+import ModalInsertar from '../ModalInsertar/ModalInsertar';
 
 export default class Tabla extends Component {
 
@@ -8,6 +9,8 @@ export default class Tabla extends Component {
         super(props)
         this.state = {
             detalles: false,
+            insertar: false,
+            newRows: [],
             detalleinfo: []
         }
     }
@@ -16,14 +19,22 @@ export default class Tabla extends Component {
         this.setState({ detalles: !this.state.detalles, detalleinfo: info })
         console.log('Vista Detalles');
     }
+    HndlAgregar = (ev, newProds) => {
+        this.setState({ newRows: newProds });
+    }
+    HndlMostrarInsertar = (e) => {
+        this.setState({ insertar: !this.state.insertar })
+    }
+
     render() {
         return (
             <>
                 {this.state.detalles && <Modal click={(e) => this.HndlClick(e, this.state.detalleinfo)} info={this.state.detalleinfo} />}
+                {this.state.insertar && <ModalInsertar agregar={(e) => this.HndlAgregar} cerrar={this.HndlMostrarInsertar} />}
 
                 <div className="row center">
 
-                    <table cellPadding={1} className="table table-striped table-hover">
+                    <table id="tbProducts" className="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>
@@ -41,6 +52,10 @@ export default class Tabla extends Component {
                                 <th>
                                     <h4>Costo</h4>
                                 </th>
+
+                                <th>
+                                    <button className='btn btn-danger' onClick={this.HndlMostrarInsertar}>Agregar +</button>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,6 +71,11 @@ export default class Tabla extends Component {
                                     </tr>
                                 )
                             })
+                            }
+                            {this.state.newRows != [] ?
+                                console.warn(this.state.newRows)
+                                :
+                                console.log(this.state.newRows)
                             }
                         </tbody>
                     </table>

@@ -9,13 +9,13 @@ export class Modal extends Component {
 
     render() {
         return (
-            <div className="modal " id="myModal" onClick={console.log(this.props.info)}>
+            <div className="modal " id="myModal" onClick={console.log(this.props.click)}>
                 <div className="modal-dialog">
                     <div className="modal-content">
 
 
                         <div className="modal-header">
-                            <h4 className="modal-title">Modal Heading</h4>
+                            <h4 className="modal-title">Detalles del pedido</h4>
                             <button className="btn-close" onClick={this.props.click}></button>
                         </div>
 
