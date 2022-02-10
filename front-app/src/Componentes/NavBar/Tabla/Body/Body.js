@@ -1,12 +1,30 @@
 import React from "react";
+import Tabla from "../Tabla";
 
-export default function Body() {
+class Body extends React.Component {
 
-    return (
-        <>
-            <div className="row center">
+    constructor(props) {
+        super(props)
 
-            </div>
-        </>
-    )
+        this.state = {
+            items: []
+        }
+    }
+
+    componentDidMount() {
+        fetch('https://eshop-deve.herokuapp.com/api/v2/orders', {
+            headers: {
+                'Authorization': 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJwUGFINU55VXRxTUkzMDZtajdZVHdHV3JIZE81cWxmaCIsImlhdCI6MTYyMDY2Mjk4NjIwM30.lhfzSXW9_TC67SdDKyDbMOYiYsKuSk6bG6XDE1wz2OL4Tq0Og9NbLMhb0LUtmrgzfWiTrqAFfnPldd8QzWvgVQ'
+            }
+        }).then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => console.log('Success:', response));
+    }
+
+    render() {
+        return <Tabla />
+    }
 }
+
+export default Body;
+
